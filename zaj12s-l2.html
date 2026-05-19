@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.:Zaj12s:.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.css">
+    <style>
+        /* css code: */
+        .container{
+            --w: 75vw;
+            --h: 90vh;
+            --block: 5vw;
+            font-family: sans-serif;
+            margin: 30px auto;
+            width: var(--w);
+            text-align: center;
+        }
+        .main{
+            /* background-color: bisque; */
+            width: 100%;
+            height: var(--h);
+            background-image: url("https://images.pexels.com/photos/8821401/pexels-photo-8821401.jpeg");
+            background-repeat: no-repeat;
+            /* background-size: 100% 100%; */
+            /* background-size: contain; */
+            background-size: var(--w) var(--h);
+            background-position: center 30px;
+            background-attachment: fixed;
+            padding-top: 100px;
+        }
+        .main .btn{
+            background-color: #a00;
+            color: #eee;
+            margin: 5px;
+            border-radius: 30px;
+            padding: 10px 30px;
+            font-weight: bold;
+            border: 1px solid #a00;
+        }
+        .main .btn:hover{
+            background-color: #eee;
+            color: #a00;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+        .section{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .links{
+            width: 30%;
+            margin: 1%;
+            overflow: hidden;
+        }
+        .links img{
+            width: 100%;
+            transition: 1.5s ease-in-out;
+            opacity: 0.8;
+        }
+        .links img:hover{
+            transform: scale(1.5);
+            filter: brightness(0.8) contrast(1.5);
+            /* filter: brightness(0.8) contrast(1.5) sepia(1.2); */
+            opacity: 1;
+        }
+        .footer{
+            background-color: #ccc;
+            padding: 20px 0;
+        }
+        .icons{
+            background: #a00;
+            color: #eee;
+            text-decoration: none;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            margin: 5px;
+            padding: 5px;
+        }
+        .icons:hover{
+            background-color: #f00;
+            color: #fff;
+        }
+        #anim{
+            display: none;
+            position: absolute;
+            top: 50px;
+            width: var(--block);
+            height: var(--block);
+            line-height: var(--block);
+            text-align: center;
+            font-weight: bold;
+            animation: anim 6s linear infinite;
+        }
+        @keyframes anim {
+            from, to {
+                background-color: #ff456a;
+                transform: translateX(0) rotate(0);
+                border-radius: 0;
+            }
+            25%, 75% {
+                background-color: #19d219;
+                transform: translateX(calc((var(--w) / 2) - (var(--block) / 2))) rotate(180deg);
+                border-radius: 30%;
+            }
+            50% {
+                background-color: #5f97ff;;
+                transform: translateX(calc(var(--w) - var(--block))) rotate(360deg);
+                border-radius: 50%;
+            }
+        }
+        @media (max-width: 500px) {
+            #anim{
+                --block: 10vw;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- page content: -->
+    <!-- .container>#anim{anim}+(main.main>h1{Company Name}+h2{Desctription text}+button.btn#btn$*2)+(section.section>(.links>a>img)*3)+footer.footer>a.icons*4+p{Page Footer &copy; AB} -->
+    <div class="container">
+        <div id="anim">*_*</div>
+        <main class="main">
+            <h1>Company Name</h1>
+            <h2>Desctription text</h2>
+            <button class="btn" id="btn1">Dark mode</button>
+            <button class="btn" id="btn2">Animation</button>
+        </main>
+        <section class="section">
+            <div class="links"><a href="#">
+                <img width="" height="" src="https://images.pexels.com/photos/8821401/pexels-photo-8821401.jpeg" alt="Golden Gate bridge"></a>
+            </div>
+            <div class="links"><a href="#">
+                <img src="https://images.pexels.com/photos/8821401/pexels-photo-8821401.jpeg" alt="Golden Gate bridge"></a>
+            </div>
+            <div class="links"><a href="#">
+                <img src="https://images.pexels.com/photos/8821401/pexels-photo-8821401.jpeg" alt="Golden Gate bridge"></a>
+            </div>
+        </section>
+        <footer class="footer">
+            <a href="#" class="icons"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="icons"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="icons"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="icons"><i class="fa-brands fa-github"></i></a>
+            <p>Page Footer &copy; AB</p>
+        </footer>
+    </div>
+
+
+    <script>
+        // JS code:
+        const btn1 = document.getElementById("btn1")
+        const btn2 = document.getElementById("btn2")
+        var counter = [true, false]
+        
+        btn1.onclick = function () {
+            console.log("ciemnosc =", counter[0])
+            if (counter[0]==true) {
+                document.body.style.backgroundColor = "#000"
+                btn1.innerHTML = "Light mode"
+            }
+            else{
+                document.body.style.backgroundColor = "#fff"
+                btn1.innerHTML = "Dark mode"
+            }
+            counter[0]=!counter[0]
+        }
+
+        btn2.onclick = function () {
+            let anim = document.getElementById("anim")
+            if (counter[1]==false) {
+                anim.style.display = "block"
+                btn2.innerHTML = "Animation off"
+                anim.addEventListener("mouseover", function () {
+                    anim.style.animationPlayState = "paused"
+                })
+                anim.addEventListener("mouseout", function () {
+                    anim.style.animationPlayState = "running"
+                })
+            }
+            else{
+                anim.style.display = "none"
+                btn2.innerHTML = "Animation on"
+            }
+            counter[1]=!counter[1]
+            console.log("anim =", counter[1])
+        }
+    </script>
+    
+</body>
+</html>
